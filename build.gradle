@@ -29,7 +29,6 @@ jacocoTestReport {
         csv.required = false
         html.required = true
     }
-    finalizedBy jacocoTestCoverageVerification
 }
 
 jacocoTestCoverageVerification {
@@ -48,3 +47,5 @@ jacocoTestCoverageVerification {
         }
     }
 }
+
+tasks.build.dependsOn(jacocoTestCoverageVerification)

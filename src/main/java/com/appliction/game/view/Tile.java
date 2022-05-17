@@ -7,9 +7,11 @@ import java.awt.Font;
 import java.awt.Color;
 
 public class Tile extends JLabel {
+    private static final int TILE_HEIGHT = 800;
+    private static final int TILE_WIDTH = 800;
 
     public Tile() {
-        setPreferredSize(new Dimension(100, 100));
+        setPreferredSize(new Dimension(TILE_WIDTH, TILE_HEIGHT));
         setOpaque(true);
         setFont(new Font("Serif", Font. BOLD, 150));
         setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));

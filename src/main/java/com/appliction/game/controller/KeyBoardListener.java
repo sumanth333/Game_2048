@@ -1,5 +1,7 @@
 package com.appliction.game.controller;
 
+import com.appliction.game.model.observers.ObserversNotifier;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.LinkedList;
@@ -30,8 +32,10 @@ public class KeyBoardListener implements KeyListener {
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {}
+    public void keyReleased(KeyEvent e) {
+        ObserversNotifier.getInstance().notifyAllObservers();
+    }
 
     @Override
-    public void keyReleased(KeyEvent e) {}
+    public void keyTyped(KeyEvent e) {}
 }

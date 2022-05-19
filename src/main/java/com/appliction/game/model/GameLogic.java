@@ -4,7 +4,7 @@ public class GameLogic {
     private int scoreOfPerformedMove;
     private static GameLogic gameLogic = null;
 
-    private GameLogic () {
+    private GameLogic() {
         scoreOfPerformedMove = 0;
     }
 

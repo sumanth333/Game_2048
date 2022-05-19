@@ -1,4 +1,4 @@
-package com.appliction.game.model;
+package com.appliction.game.model.gamelogic;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

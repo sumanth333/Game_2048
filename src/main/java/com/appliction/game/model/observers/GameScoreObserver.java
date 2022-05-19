@@ -1,6 +1,6 @@
 package com.appliction.game.model.observers;
 
-import com.appliction.game.model.GameLogic;
+import com.appliction.game.model.gamelogic.GameLogic;
 import com.appliction.game.view.Score;
 
 public class GameScoreObserver extends Observer {

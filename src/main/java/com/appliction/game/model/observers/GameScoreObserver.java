@@ -1,6 +1,6 @@
 package com.appliction.game.model.observers;
 
-import com.appliction.game.model.gamelogic.GameLogic;
+import com.appliction.game.model.gamelogic.GameAnimator;
 import com.appliction.game.view.Score;
 
 public class GameScoreObserver extends Observer {
@@ -15,10 +15,10 @@ public class GameScoreObserver extends Observer {
 
     @Override
     public void update() {
-        int scoreTobeAdded = GameLogic.getInstance().getScoreOfTilesMove();
+        int scoreTobeAdded = GameAnimator.getInstance().getScoreOfTilesMove();
         if (scoreTobeAdded > 0) {
             gameScore.updateScore(gameScore.getScoreValue() + scoreTobeAdded);
-            GameLogic.getInstance().resetScoreOfTilesMove();
+            GameAnimator.getInstance().resetScoreOfTilesMove();
         }
     }
 }

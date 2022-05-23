@@ -9,15 +9,15 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class MovingLogicTest {
+class TilesMoverTest {
 
-    private MovingLogic movingLogic;
+    private TilesMover tilesMover;
     private Tile[][] testTiles;
 
     @BeforeEach
     void setUp() {
-        movingLogic = new MovingLogic();
-        testTiles = movingLogic.tiles;
+        tilesMover = new TilesMover();
+        testTiles = tilesMover.tiles;
         Arrays.stream(testTiles).collect(Collectors.toList()).clear();
     }
 
@@ -27,7 +27,7 @@ class MovingLogicTest {
         testTiles[1][1].updateValue(4);
 
         assertEquals(4, testTiles[0][1].getValue());
-        movingLogic.moveUp();
+        tilesMover.moveUp();
         assertEquals(8, testTiles[0][1].getValue());
     }
 
@@ -37,7 +37,7 @@ class MovingLogicTest {
         testTiles[1][0].updateValue(2);
 
         assertEquals(2, testTiles[1][0].getValue());
-        movingLogic.moveDown();
+        tilesMover.moveDown();
         assertEquals(4, testTiles[1][0].getValue());
     }
 
@@ -47,7 +47,7 @@ class MovingLogicTest {
         testTiles[0][1].updateValue(2);
 
         assertEquals(2, testTiles[0][0].getValue());
-        movingLogic.moveLeft();
+        tilesMover.moveLeft();
         assertEquals(4, testTiles[0][0].getValue());
     }
 
@@ -57,7 +57,7 @@ class MovingLogicTest {
         testTiles[0][2].updateValue(2);
 
         assertEquals(2, testTiles[0][3].getValue());
-        movingLogic.moveRight();
+        tilesMover.moveRight();
         assertEquals(4, testTiles[0][3].getValue());
     }
 

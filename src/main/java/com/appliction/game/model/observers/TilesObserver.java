@@ -1,7 +1,7 @@
 package com.appliction.game.model.observers;
 
 import com.appliction.game.controller.KeyBoardListener;
-import com.appliction.game.model.gamelogic.GameLogic;
+import com.appliction.game.model.gamelogic.GameAnimator;
 
 import java.awt.event.KeyEvent;
 
@@ -14,18 +14,18 @@ public class TilesObserver extends Observer {
 
     @Override
     public void update() {
-        GameLogic gameLogic = GameLogic.getInstance();
+        GameAnimator gameAnimator = GameAnimator.getInstance();
         Integer eventCode;
         while ((eventCode = KeyBoardListener.getInstance().getEarliestKeyboardEvent()) != null) {
             switch (eventCode) {
                 case KeyEvent.VK_UP:
-                    gameLogic.moveUp();break;
+                    gameAnimator.moveUp();break;
                 case KeyEvent.VK_DOWN:
-                    gameLogic.moveDown();break;
+                    gameAnimator.moveDown();break;
                 case KeyEvent.VK_RIGHT:
-                    gameLogic.moveRight();break;
+                    gameAnimator.moveRight();break;
                 case KeyEvent.VK_LEFT:
-                    gameLogic.moveLeft();break;
+                    gameAnimator.moveLeft();break;
             }
         }
     }

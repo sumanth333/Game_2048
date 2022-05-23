@@ -2,11 +2,11 @@ package com.appliction.game.model.gamelogic;
 
 import com.appliction.game.view.Tile;
 
-public class GameLogic extends MovingLogic{
+public class GameAnimator extends TilesMover {
 
-    private static GameLogic gameLogic = null;
+    private static GameAnimator gameAnimator = null;
 
-    private GameLogic() { super(); }
+    private GameAnimator() { super(); }
 
     public boolean perFormMergeOperation(int rowIndex, int columnIndex, int sourceRowIndex, int sourceColumn) {
         if (tiles[sourceRowIndex][sourceColumn].getValue()>0) {
@@ -16,9 +16,6 @@ public class GameLogic extends MovingLogic{
                 mergeTiles(sourceTile, destinationTile);
             }
             return true;
-        } else {
-            tiles[sourceRowIndex][sourceColumn].updateValue(tiles[rowIndex][columnIndex].getValue());
-            tiles[rowIndex][columnIndex].updateValue(0);
         }
         return false;
     }
@@ -30,10 +27,10 @@ public class GameLogic extends MovingLogic{
         scoreOfPerformedMove += mergedValue;
     }
 
-    public static GameLogic getInstance() {
-        if (gameLogic == null)
-            gameLogic = new GameLogic();
-        return gameLogic;
+    public static GameAnimator getInstance() {
+        if (gameAnimator == null)
+            gameAnimator = new GameAnimator();
+        return gameAnimator;
     }
 
     public int getScoreOfTilesMove() {

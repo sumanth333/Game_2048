@@ -1,6 +1,6 @@
 package com.appliction.game.model.observers;
 
-import com.appliction.game.model.gamelogic.GameLogic;
+import com.appliction.game.model.gamelogic.GameAnimator;
 import com.appliction.game.view.Score;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,7 +27,7 @@ class GameScoreObserverTest {
     void shouldUpdateScoreWhenTilesMoved() {
         Score testScore = new Score(0,0,10,10);
         GameScoreObserver gameScoreObserver = new GameScoreObserver(mockObserversNotifier, testScore);
-        GameLogic.getInstance().addScoreOnMergingTiles(8);
+        GameAnimator.getInstance().addScoreOnMergingTiles(8);
         gameScoreObserver.update();
 
         assertEquals(8, testScore.getScoreValue());

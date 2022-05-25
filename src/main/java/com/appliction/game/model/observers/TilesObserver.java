@@ -19,13 +19,13 @@ public class TilesObserver extends Observer {
         while ((eventCode = KeyBoardListener.getInstance().getEarliestKeyboardEvent()) != null) {
             switch (eventCode) {
                 case KeyEvent.VK_UP:
-                    gameAnimator.moveUp();break;
+                    gameAnimator.moveUp();gameAnimator.spawnTile();break;
                 case KeyEvent.VK_DOWN:
-                    gameAnimator.moveDown();break;
+                    gameAnimator.moveDown();gameAnimator.spawnTile();break;
                 case KeyEvent.VK_RIGHT:
-                    gameAnimator.moveRight();break;
+                    gameAnimator.moveRight();gameAnimator.spawnTile();break;
                 case KeyEvent.VK_LEFT:
-                    gameAnimator.moveLeft();break;
+                    gameAnimator.moveLeft();gameAnimator.spawnTile();break;
             }
         }
     }

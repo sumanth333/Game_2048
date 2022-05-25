@@ -2,6 +2,9 @@ package com.appliction.game.model.gamelogic;
 
 import com.appliction.game.view.Tile;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GameAnimator extends TilesMover {
 
     private static GameAnimator gameAnimator = null;
@@ -9,13 +12,12 @@ public class GameAnimator extends TilesMover {
     private GameAnimator() { super(); }
 
     public boolean perFormMergeOperation(int rowIndex, int columnIndex, int sourceRowIndex, int sourceColumn) {
-        if (tiles[sourceRowIndex][sourceColumn].getValue()>0) {
-            Tile destinationTile = tiles[rowIndex][columnIndex];
-            Tile sourceTile = tiles[sourceRowIndex][sourceColumn];
-            if (sourceTile.getValue() == destinationTile.getValue()) {
-                mergeTiles(sourceTile, destinationTile);
-            }
-            return true;
+        Tile destinationTile = tiles[rowIndex][columnIndex];
+        Tile sourceTile = tiles[sourceRowIndex][sourceColumn];
+
+        if(destinationTile.getValue() == sourceTile.getValue() && destinationTile.getValue()>0) {
+            mergeTiles(sourceTile, destinationTile);
+                return true;
         }
         return false;
     }
@@ -25,6 +27,22 @@ public class GameAnimator extends TilesMover {
         destinationTile.updateValue(mergedValue);
         sourceTile.updateValue(0);
         scoreOfPerformedMove += mergedValue;
+    }
+
+    public boolean spawnTile() {
+        List<Tile> tempList = new ArrayList<Tile>();
+        for(int i=0; i< tiles.length; ++i) {
+            for(int j=0; j< tiles[0].length; ++j) {
+                if(tiles[i][j].getValue() ==0 ) {
+                    tempList.add(tiles[i][j]);
+                }
+            }
+        }
+        if(tempList.isEmpty())
+            return false;
+
+        tempList.get((int)Math.floor(Math.random()*tempList.size())).updateValue(2);
+        return true;
     }
 
     public static GameAnimator getInstance() {

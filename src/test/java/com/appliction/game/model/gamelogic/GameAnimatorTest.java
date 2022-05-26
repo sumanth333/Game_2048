@@ -88,6 +88,8 @@ class GameAnimatorTest {
                             };
 
         assertTrue(GameAnimator.getInstance().isGameOver(testTiles));
+        testTile2.updateValue(2048);
+        assertTrue(GameAnimator.getInstance().isGameOver(testTiles));
     }
 
     @Test

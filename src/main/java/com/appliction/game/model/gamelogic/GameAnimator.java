@@ -28,20 +28,25 @@ public class GameAnimator extends TilesMover {
     }
 
     public boolean isGameOver(Tile[][] tiles) {
+        boolean isNextMovePossible = false;
+        boolean isMaxValueReached = false;
+
         for (int rowIndex = 0; rowIndex < ROWS; ++rowIndex) {
             for (int columnIndex = 0; columnIndex < COLUMNS; ++columnIndex) {
-                if (tiles[rowIndex][columnIndex].getValue() == 0) {
-                    return false;
+                if(tiles[rowIndex][columnIndex].getValue() == 2048) {
+                    isMaxValueReached = true;
+                } else if (tiles[rowIndex][columnIndex].getValue() == 0) {
+                    isNextMovePossible = true;
                 }
                 if (rowIndex != ROWS - 1 && tiles[rowIndex][columnIndex].getValue() == tiles[rowIndex + 1][columnIndex].getValue()) {
-                    return false;
+                    isNextMovePossible = true;
                 }
                 if (columnIndex != COLUMNS - 1 && tiles[rowIndex][columnIndex].getValue() == tiles[rowIndex][columnIndex + 1].getValue()) {
-                    return false;
+                    isNextMovePossible = true;
                 }
             }
         }
-        return true;
+        return (isMaxValueReached || !isNextMovePossible);
     }
 
     public boolean spawnTile() {

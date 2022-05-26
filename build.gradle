@@ -36,7 +36,8 @@ jacocoTestReport {
 jacocoTestCoverageVerification {
     afterEvaluate {
         classDirectories.setFrom(files(classDirectories.files.collect {
-            fileTree(dir: it, exclude: ['com/application/game/GameStarter**'])
+            fileTree(dir: it, exclude: ['com/application/game/GameStarter**',
+                                        'com/appliction/game/model/GameLauncher**'])
         }))
     }
 

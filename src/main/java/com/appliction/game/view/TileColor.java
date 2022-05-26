@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.HashMap;
 
 public enum TileColor {
+        GRAY          (new Color(204, 204, 204)),
         EMERALD       (new Color(231, 223, 134)),
         BELIZE_HOLE   (new Color(151, 206, 104)),
         CARROT        (new Color(240,  79,   3)),

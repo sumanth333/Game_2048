@@ -7,7 +7,9 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GameAnimatorTest {
     @BeforeEach
@@ -59,8 +61,8 @@ class GameAnimatorTest {
         testTiles[0][0].updateValue(4);
         testTiles[0][1].updateValue(4);
 
-        boolean isMerged = GameAnimator.getInstance().perFormMergeOperation(0, 0, 0, 1);
-        assertTrue(isMerged);
+        GameAnimator.getInstance().mergeTilesRow(testTiles[0]);
+        assertEquals(8, GameAnimator.getInstance().getScoreOfTilesMove());
         GameAnimator.getInstance().resetScoreOfTilesMove();
     }
 
@@ -70,7 +72,51 @@ class GameAnimatorTest {
         testTiles[0][0].updateValue(4);
         testTiles[0][1].updateValue(8);
 
-        boolean isMerged = GameAnimator.getInstance().perFormMergeOperation(0, 0, 0, 1);
-        assertFalse(isMerged);
+        GameAnimator.getInstance().mergeTilesRow(testTiles[0]);
+        assertEquals(0, GameAnimator.getInstance().getScoreOfTilesMove());
     }
+
+    @Test
+    void shouldReturnTrueWhenGameOver() {
+        Tile testTile2 = new Tile();testTile2.updateValue(2);
+        Tile testTile4 = new Tile();testTile4.updateValue(4);
+        Tile[][] testTiles = {
+                                {testTile2,testTile4,testTile2,testTile4},
+                                {testTile4,testTile2,testTile4,testTile2},
+                                {testTile2,testTile4,testTile2,testTile4},
+                                {testTile4,testTile2,testTile4,testTile2}
+                            };
+
+        assertTrue(GameAnimator.getInstance().isGameOver(testTiles));
+    }
+
+    @Test
+    void shouldReturnFalseWhenGameOver() {
+        Tile testTile2 = new Tile();testTile2.updateValue(0);
+        Tile testTile4 = new Tile();testTile4.updateValue(4);
+        Tile[][] testTiles = {
+                {testTile2,testTile4,testTile2,testTile4},
+                {testTile4,testTile2,testTile4,testTile2},
+                {testTile2,testTile4,testTile2,testTile4},
+                {testTile4,testTile2,testTile4,testTile2}
+        };
+
+        assertFalse(GameAnimator.getInstance().isGameOver(testTiles));
+        testTile2.updateValue(2);testTile4.updateValue(2);
+        assertFalse(GameAnimator.getInstance().isGameOver(testTiles));
+    }
+    @Test
+    void shouldReturnGameOverFalseWhenPossibleMovePresent() {
+        Tile testTile2 = new Tile();testTile2.updateValue(2);
+        Tile testTile4 = new Tile();testTile4.updateValue(4);
+        Tile[][] testTiles = {
+                {testTile2,testTile2,testTile2,testTile2},
+                {testTile4,testTile4,testTile2,testTile4},
+                {testTile2,testTile4,testTile2,testTile4},
+                {testTile4,testTile4,testTile2,testTile4}
+        };
+
+        assertFalse(GameAnimator.getInstance().isGameOver(testTiles));
+    }
+
 }

@@ -16,27 +16,27 @@ public class GameAnimator extends TilesMover {
     public void mergeTilesRow(Tile[] tilesRow) {
         for (int rowIndex = tilesRow.length - 1; rowIndex >= 1; rowIndex--) {
             if (tilesRow[rowIndex].getValue() == tilesRow[rowIndex - 1].getValue()) {
-                performMergeOperation(tilesRow[rowIndex], tilesRow[rowIndex - 1]);
+                scoreOfPerformedMove += performMergeOperation(tilesRow[rowIndex], tilesRow[rowIndex - 1]);
             }
         }
     }
 
-    private void performMergeOperation(Tile destinationTile, Tile sourceTile) {
+    private int performMergeOperation(Tile destinationTile, Tile sourceTile) {
         destinationTile.updateValue(destinationTile.getValue() + sourceTile.getValue());
         sourceTile.updateValue(0);
-        scoreOfPerformedMove += destinationTile.getValue();
+        return destinationTile.getValue();
     }
 
-    public boolean isGameOver() {
-        for (int i = 0; i < ROWS; ++i) {
-            for (int j = 0; j < COLUMNS; ++j) {
-                if (tiles[i][j].getValue() == 0) {
+    public boolean isGameOver(Tile[][] tiles) {
+        for (int rowIndex = 0; rowIndex < ROWS; ++rowIndex) {
+            for (int columnIndex = 0; columnIndex < COLUMNS; ++columnIndex) {
+                if (tiles[rowIndex][columnIndex].getValue() == 0) {
                     return false;
                 }
-                if (i != ROWS - 1 && tiles[i][j].getValue() == tiles[i + 1][j].getValue()) {
+                if (rowIndex != ROWS - 1 && tiles[rowIndex][columnIndex].getValue() == tiles[rowIndex + 1][columnIndex].getValue()) {
                     return false;
                 }
-                if (j != COLUMNS - 1 && tiles[i][j].getValue() == tiles[i][j + 1].getValue()) {
+                if (columnIndex != COLUMNS - 1 && tiles[rowIndex][columnIndex].getValue() == tiles[rowIndex][columnIndex + 1].getValue()) {
                     return false;
                 }
             }
@@ -46,10 +46,10 @@ public class GameAnimator extends TilesMover {
 
     public boolean spawnTile() {
         List<Tile> tempList = new ArrayList<Tile>();
-        for (int i = 0; i < tiles.length; ++i) {
-            for (int j = 0; j < tiles[0].length; ++j) {
-                if (tiles[i][j].getValue() == 0) {
-                    tempList.add(tiles[i][j]);
+        for (int rowIndex = 0; rowIndex < tiles.length; ++rowIndex) {
+            for (int columnIndex = 0; columnIndex < tiles[0].length; ++columnIndex) {
+                if (tiles[rowIndex][columnIndex].getValue() == 0) {
+                    tempList.add(tiles[rowIndex][columnIndex]);
                 }
             }
         }

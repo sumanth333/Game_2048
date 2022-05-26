@@ -1,7 +1,10 @@
 package com.appliction.game;
 
+import com.appliction.game.model.GameLauncher;
+
 public class GameStarter {
     public static void main(String[] args) {
-        System.out.println("***** Welcome to GAME_2048 *****");
+        GameLauncher gameLauncher = new GameLauncher();
+        gameLauncher.launchGameUI();
     }
 }

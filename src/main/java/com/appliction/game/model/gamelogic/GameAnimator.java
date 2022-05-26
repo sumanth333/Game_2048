@@ -11,22 +11,35 @@ public class GameAnimator extends TilesMover {
 
     private GameAnimator() { super(); }
 
-    public boolean perFormMergeOperation(int rowIndex, int columnIndex, int sourceRowIndex, int sourceColumn) {
-        Tile destinationTile = tiles[rowIndex][columnIndex];
-        Tile sourceTile = tiles[sourceRowIndex][sourceColumn];
-
-        if(destinationTile.getValue() == sourceTile.getValue() && destinationTile.getValue()>0) {
-            mergeTiles(sourceTile, destinationTile);
-                return true;
+    public void mergeTilesRow(Tile[] tilesRow) {
+        for(int rowIndex=tilesRow.length-1; rowIndex>=1; rowIndex--) {
+            if(tilesRow[rowIndex].getValue() == tilesRow[rowIndex-1].getValue()) {
+                performMergeOperation(tilesRow[rowIndex], tilesRow[rowIndex-1]);
+            }
         }
-        return false;
     }
 
-    private void mergeTiles(Tile sourceTile, Tile destinationTile) {
-        int mergedValue = destinationTile.getValue() + sourceTile.getValue();
-        destinationTile.updateValue(mergedValue);
+    private void performMergeOperation(Tile destinationTile, Tile sourceTile) {
+        destinationTile.updateValue(destinationTile.getValue()+sourceTile.getValue());
         sourceTile.updateValue(0);
-        scoreOfPerformedMove += mergedValue;
+        scoreOfPerformedMove += destinationTile.getValue();
+    }
+
+    public boolean isGameOver() {
+        for(int i=0; i<ROWS; ++i) {
+            for (int j=0; j<COLUMNS; ++j) {
+                if(tiles[i][j].getValue() == 0) {
+                    return false;
+                }
+                if(i!=ROWS-1 && tiles[i][j].getValue() == tiles[i+1][j].getValue()) {
+                    return false;
+                }
+                if(j!=COLUMNS-1 && tiles[i][j].getValue() == tiles[i][j+1].getValue()) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     public boolean spawnTile() {
@@ -41,7 +54,7 @@ public class GameAnimator extends TilesMover {
         if(tempList.isEmpty())
             return false;
 
-        tempList.get((int)Math.floor(Math.random()*tempList.size())).updateValue(2);
+        tempList.get((int)Math.floor(Math.random()*tempList.size())).updateValue(Math.random()>0.5?4:2);
         return true;
     }
 

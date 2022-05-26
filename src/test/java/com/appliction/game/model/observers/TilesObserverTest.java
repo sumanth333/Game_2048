@@ -28,7 +28,7 @@ class TilesObserverTest {
     @Test
     void shouldPerformKeyUpOperationOnTilesUpdate() {
         KeyBoardListener testKeyListener = KeyBoardListener.getInstance();
-        KeyEvent testEvent = new KeyEvent(new JPanel(), 1,2,3,KeyEvent.VK_UP, 't');
+        KeyEvent testEvent = new KeyEvent(new JPanel(), 1, 2, 3, KeyEvent.VK_UP, 't');
         testKeyListener.keyPressed(testEvent);
 
         TilesObserver tilesObserver = new TilesObserver(mockObserversNotifier);
@@ -40,7 +40,7 @@ class TilesObserverTest {
     @Test
     void shouldPerformKeyLeftOperationOnTilesUpdate() {
         KeyBoardListener testKeyListener = KeyBoardListener.getInstance();
-        KeyEvent testEvent = new KeyEvent(new JPanel(), 1,2,3,KeyEvent.VK_LEFT, 't');
+        KeyEvent testEvent = new KeyEvent(new JPanel(), 1, 2, 3, KeyEvent.VK_LEFT, 't');
         testKeyListener.keyPressed(testEvent);
 
         TilesObserver tilesObserver = new TilesObserver(mockObserversNotifier);

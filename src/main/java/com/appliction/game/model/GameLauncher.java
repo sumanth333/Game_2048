@@ -14,7 +14,7 @@ public class GameLauncher {
     private void initialiseObservers() {
         ObserversNotifier observersNotifier = ObserversNotifier.getInstance();
 
-        Score gamScore = new Score(0,0,100,100);
+        Score gamScore = new Score(0, 0, 100, 100);
         GameUI.getInstance().add(gamScore, BorderLayout.NORTH);
         new TilesObserver(observersNotifier);
         new GameScoreObserver(observersNotifier, gamScore);

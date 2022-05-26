@@ -27,7 +27,7 @@ public class PlayArea extends JPanel {
 
     private void addTileObjects() {
         playArea.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        for (int rowIndex = 0; rowIndex < ROWS ; rowIndex++) {
+        for (int rowIndex = 0; rowIndex < ROWS; rowIndex++) {
             for (int columnIndex = 0; columnIndex < COLUMNS; ++columnIndex) {
                 Tile tile = new Tile();
                 tileObjects[rowIndex][columnIndex] = tile;

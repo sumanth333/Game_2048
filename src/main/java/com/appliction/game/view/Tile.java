@@ -1,6 +1,8 @@
 package com.appliction.game.view;
 
-import javax.swing.*;
+import javax.swing.JLabel;
+import javax.swing.BorderFactory;
+import javax.swing.SwingConstants;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Color;
@@ -12,14 +14,14 @@ public class Tile extends JLabel {
     public Tile() {
         setPreferredSize(new Dimension(TILE_WIDTH, TILE_HEIGHT));
         setOpaque(true);
-        setFont(new Font("Serif", Font. BOLD, 80));
+        setFont(new Font("Serif", Font.BOLD, 80));
         setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         setBackground(TileColor.getTileColor(1));
         setHorizontalAlignment(SwingConstants.CENTER);
     }
 
     public void updateValue(int tileValue) {
-        if(tileValue == 0) {
+        if (tileValue == 0) {
             this.setText("");
             tileValue = 1;
         } else {
@@ -30,7 +32,7 @@ public class Tile extends JLabel {
     }
 
     public int getValue() {
-        if(this.getText().isEmpty())
+        if (this.getText().isEmpty())
             return 0;
 
         return Integer.parseInt(this.getText());

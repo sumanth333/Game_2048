@@ -1,6 +1,7 @@
 package com.appliction.game.view;
 
 import com.appliction.game.controller.KeyBoardListener;
+
 import javax.swing.JFrame;
 
 public class GameUI extends JFrame {
@@ -10,7 +11,8 @@ public class GameUI extends JFrame {
     private static int WIDTH = 800;
     private static String GAME_TITLE = "Game_2048";
 
-    private GameUI() {}
+    private GameUI() {
+    }
 
     private void initialiseWindow() {
         gameUI.setTitle(GAME_TITLE);
@@ -18,7 +20,7 @@ public class GameUI extends JFrame {
         gameUI.setVisible(true);
         gameUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gameUI.setAlwaysOnTop(true);
-        gameUI.setSize(WIDTH,HEIGHT);
+        gameUI.setSize(WIDTH, HEIGHT);
         gameUI.addKeyListener(KeyBoardListener.getInstance());
     }
 

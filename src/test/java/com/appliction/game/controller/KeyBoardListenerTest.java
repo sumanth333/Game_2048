@@ -31,7 +31,7 @@ class KeyBoardListenerTest {
     @Test
     void shouldAddKeyBoardEventToQueue() {
         KeyBoardListener testKeyListener = KeyBoardListener.getInstance();
-        KeyEvent testEvent = new KeyEvent(new JPanel(), 1,2,3,KeyEvent.VK_UP, 't');
+        KeyEvent testEvent = new KeyEvent(new JPanel(), 1, 2, 3, KeyEvent.VK_UP, 't');
         testKeyListener.keyPressed(testEvent);
 
         assertEquals(KeyEvent.VK_UP, testKeyListener.getEarliestKeyboardEvent());
@@ -44,7 +44,7 @@ class KeyBoardListenerTest {
         observersNotifier.subscribeObserver(mockGameScoreObserver);
 
         KeyBoardListener testKeyListener = KeyBoardListener.getInstance();
-        KeyEvent testEvent = new KeyEvent(new JPanel(), 1,2,3,KeyEvent.VK_UP, 't');
+        KeyEvent testEvent = new KeyEvent(new JPanel(), 1, 2, 3, KeyEvent.VK_UP, 't');
         testKeyListener.keyReleased(testEvent);
 
         verify(mockGameScoreObserver, times(1)).update();

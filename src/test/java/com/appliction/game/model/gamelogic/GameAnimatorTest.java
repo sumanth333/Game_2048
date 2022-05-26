@@ -59,7 +59,7 @@ class GameAnimatorTest {
         testTiles[0][0].updateValue(4);
         testTiles[0][1].updateValue(4);
 
-        boolean isMerged = GameAnimator.getInstance().perFormMergeOperation(0,0,0,1);
+        boolean isMerged = GameAnimator.getInstance().perFormMergeOperation(0, 0, 0, 1);
         assertTrue(isMerged);
         GameAnimator.getInstance().resetScoreOfTilesMove();
     }
@@ -70,7 +70,7 @@ class GameAnimatorTest {
         testTiles[0][0].updateValue(4);
         testTiles[0][1].updateValue(8);
 
-        boolean isMerged = GameAnimator.getInstance().perFormMergeOperation(0,0,0,1);
+        boolean isMerged = GameAnimator.getInstance().perFormMergeOperation(0, 0, 0, 1);
         assertFalse(isMerged);
     }
 }

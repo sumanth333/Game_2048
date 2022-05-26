@@ -13,7 +13,7 @@ public class KeyBoardListener implements KeyListener {
     private static KeyBoardListener keyBoardListener = null;
 
     public static KeyBoardListener getInstance() {
-        if(keyBoardListener == null)
+        if (keyBoardListener == null)
             keyBoardListener = new KeyBoardListener();
         return keyBoardListener;
     }
@@ -37,5 +37,6 @@ public class KeyBoardListener implements KeyListener {
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {}
+    public void keyTyped(KeyEvent e) {
+    }
 }

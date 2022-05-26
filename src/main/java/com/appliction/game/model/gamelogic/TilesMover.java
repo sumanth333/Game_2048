@@ -23,18 +23,17 @@ public class TilesMover {
 
     public void moveTiles(int keyCode) {
         boolean isGridChanged;
-        boolean isFlipped=false;
-        boolean isRotated=false;
+        boolean isFlipped = false;
+        boolean isRotated = false;
         int[][] pastGridValues = copyGrid(tiles);
 
 
-        if(keyCode == KeyEvent.VK_RIGHT) {
+        if (keyCode == KeyEvent.VK_RIGHT) {
             //DO NOTHING
-        } else if(keyCode == KeyEvent.VK_LEFT) {
+        } else if (keyCode == KeyEvent.VK_LEFT) {
             flipTheGrid(tiles);
-            isFlipped=true;
-        }
-        else if(keyCode == KeyEvent.VK_DOWN) {
+            isFlipped = true;
+        } else if (keyCode == KeyEvent.VK_DOWN) {
             rotateTheGrid(tiles);
             isRotated = true;
         } else {
@@ -44,33 +43,33 @@ public class TilesMover {
             isFlipped = true;
         }
 
-        for(int i=0; i<ROWS; ++i) {
+        for (int i = 0; i < ROWS; ++i) {
             performTileOperations(tiles[i]);
         }
 
-        if(isFlipped) {
+        if (isFlipped) {
             flipTheGrid(tiles);
         }
-        if(isRotated) {
+        if (isRotated) {
             rotateTheGrid(tiles);
             rotateTheGrid(tiles);
             rotateTheGrid(tiles);
         }
 
         isGridChanged = compareGrid(pastGridValues, tiles);
-        if(isGridChanged) {
+        if (isGridChanged) {
             GameAnimator.getInstance().spawnTile();
         }
 
-        if(GameAnimator.getInstance().isGameOver()) {
+        if (GameAnimator.getInstance().isGameOver()) {
             JOptionPane.showMessageDialog(GameUI.getInstance(), "*** GAME OVER ***");
         }
     }
 
     private boolean compareGrid(int[][] pastGridValues, Tile[][] tiles) {
-        for(int i=0; i<ROWS; ++i) {
-            for(int j=0; j<COLUMNS; ++j) {
-                if(pastGridValues[i][j] != tiles[i][j].getValue())
+        for (int i = 0; i < ROWS; ++i) {
+            for (int j = 0; j < COLUMNS; ++j) {
+                if (pastGridValues[i][j] != tiles[i][j].getValue())
                     return true;
             }
         }
@@ -79,8 +78,8 @@ public class TilesMover {
 
     private int[][] copyGrid(Tile[][] tiles) {
         int[][] copyTileValues = new int[ROWS][COLUMNS];
-        for(int i=0; i<ROWS; ++i) {
-            for (int j=0; j<COLUMNS; ++j) {
+        for (int i = 0; i < ROWS; ++i) {
+            for (int j = 0; j < COLUMNS; ++j) {
                 copyTileValues[i][j] = tiles[i][j].getValue();
             }
         }
@@ -95,12 +94,12 @@ public class TilesMover {
 
     public void slideTilesRow(Tile[] tilesRow) {
         List<Integer> nonZeroTiles = new ArrayList<>();
-        for(int i=0; i<tilesRow.length; ++i) {
-            if(tilesRow[i].getValue()>0)
+        for (int i = 0; i < tilesRow.length; ++i) {
+            if (tilesRow[i].getValue() > 0)
                 nonZeroTiles.add(tilesRow[i].getValue());
         }
         int index = 0;
-        while (index< tilesRow.length - nonZeroTiles.size()) {
+        while (index < tilesRow.length - nonZeroTiles.size()) {
             tilesRow[index++].updateValue(0);
         }
         while (!nonZeroTiles.isEmpty()) {

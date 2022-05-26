@@ -25,7 +25,7 @@ class GameScoreObserverTest {
 
     @Test
     void shouldUpdateScoreWhenTilesMoved() {
-        Score testScore = new Score(0,0,10,10);
+        Score testScore = new Score(0, 0, 10, 10);
         GameScoreObserver gameScoreObserver = new GameScoreObserver(mockObserversNotifier, testScore);
         GameAnimator.getInstance().addScoreOnMergingTiles(8);
         gameScoreObserver.update();
@@ -35,7 +35,7 @@ class GameScoreObserverTest {
 
     @Test
     void shouldNotUpdateGameScoreWhenTilesAreNotMerged() {
-        Score testScore = new Score(0,0,10,10);
+        Score testScore = new Score(0, 0, 10, 10);
         GameScoreObserver gameScoreObserver = new GameScoreObserver(mockObserversNotifier, testScore);
         gameScoreObserver.update();
 

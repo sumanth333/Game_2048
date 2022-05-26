@@ -14,7 +14,7 @@ class ScoreTest {
         int testYPosition = 50;
         int testWidth = 100;
         int testHeight = 100;
-        Score testScore = new Score(testXPosition, testYPosition, testWidth,testHeight);
+        Score testScore = new Score(testXPosition, testYPosition, testWidth, testHeight);
 
         assertEquals(testXPosition, testScore.getX());
         assertEquals(testYPosition, testScore.getY());
@@ -24,7 +24,7 @@ class ScoreTest {
 
     @Test
     void shouldCreateScoreWithExpectedDefaults() {
-        Score testScore = new Score(0, 0, 100,100);
+        Score testScore = new Score(0, 0, 100, 100);
 
         assertEquals("0", testScore.getText());
         assertEquals("Arial", testScore.getFont().getName());
@@ -34,7 +34,7 @@ class ScoreTest {
 
     @Test
     void shouldUpdateScoreValue() {
-        Score testScore = new Score(0, 0, 100,100);
+        Score testScore = new Score(0, 0, 100, 100);
 
         assertEquals(0, testScore.getScoreValue());
         testScore.updateScore(100);

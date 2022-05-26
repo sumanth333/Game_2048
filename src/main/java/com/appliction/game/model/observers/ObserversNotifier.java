@@ -8,7 +8,8 @@ public class ObserversNotifier {
     private final List<Observer> observersList = new ArrayList<>();
     private static ObserversNotifier observersNotifier = null;
 
-    private ObserversNotifier(){}
+    private ObserversNotifier() {
+    }
 
     public void subscribeObserver(Observer observer) {
         observersList.add(observer);
@@ -25,7 +26,7 @@ public class ObserversNotifier {
     }
 
     public static ObserversNotifier getInstance() {
-        if(observersNotifier == null)
+        if (observersNotifier == null)
             observersNotifier = new ObserversNotifier();
         return observersNotifier;
     }

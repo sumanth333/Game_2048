@@ -22,6 +22,11 @@ public class TilesMover {
     }
 
     public void moveTiles(int keyCode) {
+        if (GameAnimator.getInstance().isGameOver(tiles)) {
+            JOptionPane.showMessageDialog(GameUI.getInstance(), "*** GAME OVER ***");
+            return;
+        }
+
         boolean isGridChanged;
         boolean isFlipped = false;
         boolean isRotated = false;
@@ -59,10 +64,6 @@ public class TilesMover {
         isGridChanged = checkIsGridChanged(pastGridValues, tiles);
         if (isGridChanged) {
             GameAnimator.getInstance().spawnTile();
-        }
-
-        if (GameAnimator.getInstance().isGameOver(tiles)) {
-            JOptionPane.showMessageDialog(GameUI.getInstance(), "*** GAME OVER ***");
         }
     }
 

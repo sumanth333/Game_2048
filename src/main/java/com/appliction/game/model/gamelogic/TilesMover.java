@@ -56,17 +56,17 @@ public class TilesMover {
             rotateTheGrid(tiles);
         }
 
-        isGridChanged = compareGrid(pastGridValues, tiles);
+        isGridChanged = checkIsGridChanged(pastGridValues, tiles);
         if (isGridChanged) {
             GameAnimator.getInstance().spawnTile();
         }
 
-        if (GameAnimator.getInstance().isGameOver()) {
+        if (GameAnimator.getInstance().isGameOver(tiles)) {
             JOptionPane.showMessageDialog(GameUI.getInstance(), "*** GAME OVER ***");
         }
     }
 
-    private boolean compareGrid(int[][] pastGridValues, Tile[][] tiles) {
+    private boolean checkIsGridChanged(int[][] pastGridValues, Tile[][] tiles) {
         for (int i = 0; i < ROWS; ++i) {
             for (int j = 0; j < COLUMNS; ++j) {
                 if (pastGridValues[i][j] != tiles[i][j].getValue())

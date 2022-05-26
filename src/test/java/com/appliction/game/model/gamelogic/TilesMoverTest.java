@@ -4,8 +4,8 @@ import com.appliction.game.view.Tile;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.awt.event.KeyEvent;
 import java.util.Arrays;
-import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -18,7 +18,9 @@ class TilesMoverTest {
     void setUp() {
         tilesMover = new TilesMover();
         testTiles = tilesMover.tiles;
-        Arrays.stream(testTiles).collect(Collectors.toList()).clear();
+        Arrays.stream(testTiles).forEach(tiles -> {
+            Arrays.stream(tiles).forEach(tile -> {tile.updateValue(0);});
+        });
     }
 
     @Test
@@ -27,7 +29,7 @@ class TilesMoverTest {
         testTiles[1][1].updateValue(4);
 
         assertEquals(4, testTiles[0][1].getValue());
-        tilesMover.moveUp();
+        tilesMover.moveTiles(KeyEvent.VK_UP);
         assertEquals(8, testTiles[0][1].getValue());
     }
 
@@ -36,29 +38,18 @@ class TilesMoverTest {
         testTiles[0][0].updateValue(2);
         testTiles[1][0].updateValue(2);
 
-        assertEquals(2, testTiles[1][0].getValue());
-        tilesMover.moveDown();
-        assertEquals(4, testTiles[1][0].getValue());
+        assertEquals(0, testTiles[3][0].getValue());
+        tilesMover.moveTiles(KeyEvent.VK_DOWN);
+        assertEquals(4, testTiles[3][0].getValue());
     }
 
     @Test
     void shouldPerformMoveLeftOperationAndGenerateValidOutput() {
-        testTiles[0][0].updateValue(2);
-        testTiles[0][1].updateValue(2);
+        testTiles[0][3].updateValue(8);
+        testTiles[0][2].updateValue(8);
 
-        assertEquals(2, testTiles[0][0].getValue());
-        tilesMover.moveLeft();
-        assertEquals(4, testTiles[0][0].getValue());
+        assertEquals(0, testTiles[0][0].getValue());
+        tilesMover.moveTiles(KeyEvent.VK_LEFT);
+        assertEquals(16, testTiles[0][0].getValue());
     }
-
-    @Test
-    void shouldPerformMoveRightOperationAndGenerateValidOutput() {
-        testTiles[0][3].updateValue(2);
-        testTiles[0][2].updateValue(2);
-
-        assertEquals(2, testTiles[0][3].getValue());
-        tilesMover.moveRight();
-        assertEquals(4, testTiles[0][3].getValue());
-    }
-
 }
